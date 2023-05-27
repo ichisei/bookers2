@@ -4,6 +4,16 @@
     </div>
     <div class="col-md-5">
       <h2>Editing Book</h2>
+
+<% if @book.errors.any? %>
+  <h2><%= @book.errors.count %>error prohibited this obj from being saved: </h2>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
       <%= form_with model: @book, url: book_path(@book.id), method: :PATCH do |f| %>
       <div class="form-group">
         <lavel>Title</lavel>
