@@ -1,7 +1,4 @@
-<div>
-  <%= flash[:notice] %>
-</div>
-
+<%= flash[:notice] %>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -13,14 +10,14 @@
         <table class="table">
           <tr>
             <td>
-             <%= image_tag 'no_image.jpg' %><br>
-             <%=  link_to @book.user.name, user_path(current_user.id) %>
+             <%= image_tag @books.user.get_profile_image(100,100) %><br>
+             <%=  link_to @books.user.name, user_path(@books.user.id) %>
             </td>
-            <td><%= link_to @book.title, book_path(@book.id) %></td>
-            <td><%= @book.body %></td>
-            <% if @book.user == current_user %>
-            <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to "Destroy", book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか?" %></td>
+            <td><%= link_to @books.title, book_path(@books.id) %></td>
+            <td><%= @books.body %></td>
+            <% if @books.user == current_user %>
+            <td><%= link_to "Edit", edit_book_path(@books.id), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to "Destroy", book_path(@books.id), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか?" %></td>
             <% end %>
            </tr>
         </table>
